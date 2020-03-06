@@ -1,1 +1,16 @@
 
+---
+hosts:
+   - device: 192.168.147.56
+     username: ysaied
+   - device: 192.168.147.55
+     username: ysaied
+   - device: 192.168.147.37
+     username: ysaied
+   - device: 192.168.147.36
+     username: ysaied
+   - device: 192.168.147.39
+     username: ysaied
+tests:
+   - test_11_up
+mail: mail_1.yml
