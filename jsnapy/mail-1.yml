@@ -1,9 +1,0 @@
----
-from: ysaied80@gmail.com
-to: ysaied80@yahoo.com
-sub: "Subject - JSNAPy TEST Mail"
-receipient_name: Yasser Saied
-passwd: yuos1980
-server: smtp.gmail.com
-port: 587
-sender_name: "Yasser Saied - JSNAPy"
