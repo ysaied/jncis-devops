@@ -1,0 +1,9 @@
+---
+Test1:
+   - rpc | command : get-interface-information
+   - iterate :
+      xpath: physical-interface
+      tests:
+         - is-equal: admin-status, up
+           info: "Test OK"
+           error: "Test Fail"
