@@ -12,4 +12,8 @@ hosts:
    - device: 10.117.97.39
      username: ysaied
 tests:
+<<<<<<< HEAD
    - test_11_up
+=======
+   - test_11.yml
+>>>>>>> b90143c2a910e8cbea963372cb7556d50714ce63
