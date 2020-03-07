@@ -1,8 +1,8 @@
 
 ---
 Test1:
-   - rpc | command : get-interface-information
-   - iterate :
+   - rpc: get-interface-information
+   - iterate:
       xpath: physical-interface
       tests:
          - is-equal: admin-status, up
