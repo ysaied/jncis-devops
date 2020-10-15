@@ -9,6 +9,7 @@ customers:
     remote_subnets: 
       - 3.21.0.0/24
       - 3.21.1.0/24
+    asn: 21  
   - id: 22
     name: customer-22
     gateway: 192.168.147.205
@@ -18,3 +19,4 @@ customers:
     remote_subnets: 
       - 3.22.0.0/24
       - 3.22.1.0/24
+    asn: 22  
