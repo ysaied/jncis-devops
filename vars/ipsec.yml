@@ -6,4 +6,6 @@ customers:
     tunnel_local_add: 3.0.21.1
     tunnel_remote_add: 3.0.21.2
     tunnel_prefix: 30
-    lan_subnet: 3.21.0.0/24
+    subnets: 
+      - 3.21.0.0/24
+      - 3.21.1.0/24
