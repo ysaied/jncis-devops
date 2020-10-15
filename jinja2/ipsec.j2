@@ -1,0 +1,92 @@
+services {
+    service-set ipsec-{{ customer.id }} {
+        tcp-mss 1384;
+        next-hop-service {
+            inside-service-interface ms-5/0/0.{{ customer.id }};
+            outside-service-interface ms-5/0/0.{{ customer.id + 100 }};
+        }
+        ipsec-vpn-options {
+            local-gateway 1.0.0.11;     
+        }
+        ipsec-vpn-rules ipsec-{{ customer.id }};
+    }
+    ipsec-vpn {
+        rule ipsec-{{ customer.id }} {
+            apply-groups ipsec-rule;
+            term all-traffic {
+                from {
+                    ipsec-inside-interface ms-5/0/0.{{ customer.id }};
+                }
+                then {
+                    remote-gateway {{ customer.gateway }};
+                    dynamic {
+                        ike-policy ike-policy-ipsec-{{ customer.id }};
+                    }
+                    clear-dont-fragment-bit;
+                }
+            }
+        }
+        ipsec {
+            proposal ipsec-default-proposal {
+                description ike-phase2-policy;
+                protocol esp;
+                authentication-algorithm hmac-sha1-96;
+                encryption-algorithm aes-256-cbc;
+                lifetime-seconds 3600;
+            }
+            policy ipsec-default-policy {
+                perfect-forward-secrecy {
+                    keys group5;
+                }
+                proposals ipsec-default-proposal;
+            }
+        }
+        ike {
+            proposal ike-proposal-default {
+                description ike-phase1-proposal;
+                authentication-method pre-shared-keys;
+                dh-group group5;
+                authentication-algorithm sha1;
+                encryption-algorithm aes-256-cbc;
+                lifetime-seconds 86400;
+            }
+            policy ike-policy-ipsec-{{ customer.id }} {
+                description ipsec-{{ customer.id }};
+                mode main;
+                proposals ike-proposal-default;
+                pre-shared-key ascii-text "$9$S6UlvLoaUDHm4az3/9puLx7"; ## SECRET-DATA
+            }
+        }
+        establish-tunnels immediately;
+    }
+}
+interfaces {
+    ms-5/0/0 {
+        unit {{ customer.id }} {
+            description ipsec-{{ customer.id }}-inside;
+            family inet {
+                address {{ customer.ipsec_tunnel_local_add }};
+            }
+            service-domain inside;
+        }
+        unit {{ customer.id + 100 }} {
+            description ipsec-{{ customer.id }}-outside;
+            family inet;
+            service-domain outside;
+        }
+    }
+}
+routing-options {
+    static {
+        route {{ customer.lan_subnet }} next-hop ms-5/0/0.{{ customer.id }};
+    }                                   
+}
+protocols {
+    bgp {
+        group ipsec-customers {
+            neighbor {{ customer.ipsec_tunnel_remote_add }} {
+                peer-as {{ customer.asn }};
+            }
+        }
+    }
+}
