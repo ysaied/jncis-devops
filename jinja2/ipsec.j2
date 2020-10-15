@@ -66,7 +66,7 @@ interfaces {
         unit {{ customer.id }} {
             description ipsec-{{ customer.id }}-inside;
             family inet {
-                address {{ customer.tunnel_local_add ~ /|string ~ customer.tunnel_prefix }};
+                address {{ customer.tunnel_local_add ~ '/' ~ customer.tunnel_prefix }};
             }
             service-domain inside;
         }
