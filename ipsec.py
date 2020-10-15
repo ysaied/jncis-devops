@@ -1,6 +1,6 @@
-from jinja2 import Environment, FileSystemLoad
+from jinja2 import Environment, FileSystemLoader
 
-env = Environment(load=FileSystemLoad("jinja2"))
+env = Environment(load=FileSystemLoader("jinja2"))
 ipsec_jinja2 = env.get_template("ipsec.j2")
 
 with open("vars/ipsec.yml") as file:
