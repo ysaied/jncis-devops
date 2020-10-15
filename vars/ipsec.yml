@@ -2,7 +2,8 @@
 customers:
   - id: 21
     name: customer-21
-    gateway: 192.168.21.1
+    remote_gateway: 192.168.21.1
+    ike_psk: jnpr123
     tunnel_local_add: 3.0.21.1
     tunnel_remote_add: 3.0.21.2
     tunnel_prefix: 30
@@ -13,6 +14,7 @@ customers:
   - id: 22
     name: customer-22
     gateway: 192.168.22.1
+    ike_psk: jnpr123
     tunnel_local_add: 3.0.22.1
     tunnel_remote_add: 3.0.22.2
     tunnel_prefix: 30
@@ -23,6 +25,7 @@ customers:
   - id: 23
     name: customer-23
     gateway: 192.168.23.1
+    ike_psk: jnpr123
     tunnel_local_add: 3.0.23.1
     tunnel_remote_add: 3.0.23.2
     tunnel_prefix: 30

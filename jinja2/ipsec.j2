@@ -21,7 +21,7 @@ services {
                     ipsec-inside-interface ms-5/0/0.{{ customer.id }};
                 }
                 then {
-                    remote-gateway {{ customer.gateway }};
+                    remote-gateway {{ customer.remote_gateway }};
                     dynamic {
                         ike-policy ike-policy-ipsec-{{ customer.id }};
                     }
@@ -59,7 +59,7 @@ services {
                 description ipsec-{{ customer.id }};
                 mode main;
                 proposals ike-proposal-default;
-                pre-shared-key ascii-text "$9$S6UlvLoaUDHm4az3/9puLx7"; ## SECRET-DATA
+                pre-shared-key ascii-text {{ customer.ike_psk }};
             }
             {%- endfor %}
         }
