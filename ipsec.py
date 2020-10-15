@@ -1,3 +1,4 @@
+#! /usr/bin/python
 from jinja2 import Environment, FileSystemLoader
 from yaml import load
 
