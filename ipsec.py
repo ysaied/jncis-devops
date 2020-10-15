@@ -7,8 +7,6 @@ env = Environment(loader=FileSystemLoader("jinja2"))
 # Load Jinja2 template
 ipsec_jinja2 = env.get_template("ipsec.j2")
 
-print (ipsec_jinja2)
-
 # open file to read the YAML 
 with open("./vars/ipsec.yml", "r") as vars_yaml:
     ipsec_vars = yaml.load(vars_yaml, Loader=yaml.FullLoader)

@@ -66,7 +66,7 @@ interfaces {
         unit {{ customer.id }} {
             description ipsec-{{ customer.id }}-inside;
             family inet {
-                address {{ customer.ipsec_tunnel_local_add }};
+                address {{ customer.tunnel_local_add ~ customer.tunnel_prefix }};
             }
             service-domain inside;
         }
@@ -85,7 +85,7 @@ routing-options {
 protocols {
     bgp {
         group ipsec-customers {
-            neighbor {{ customer.ipsec_tunnel_remote_add }} {
+            neighbor {{ customer.tunnel_remote_add }} {
                 peer-as {{ customer.asn }};
             }
         }
