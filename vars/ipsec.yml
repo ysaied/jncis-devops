@@ -1,8 +1,8 @@
 ---
-customers
-  - id : 21
+customers:
+  - id: 21
     name: juniper
-    gateway : 192.168.147.204
-    ipsec_tunnel_local_add : 3.0.21.1/30
-    ipsec_tunnel_remote_add : 3.0.21.2
-    lan_subnet : 3.21.0.0/24
+    gateway: 192.168.147.204
+    ipsec_tunnel_local_add: 3.0.21.1/30
+    ipsec_tunnel_remote_add: 3.0.21.2
+    lan_subnet: 3.21.0.0/24
