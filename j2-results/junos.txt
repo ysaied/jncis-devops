@@ -55,7 +55,7 @@ services {
                     ipsec-inside-interface ms-5/0/0.22;
                 }
                 then {
-                    remote-gateway 192.168.22.1;
+                    remote-gateway ;
                     dynamic {
                         ike-policy ike-policy-ipsec-22;
                     }
@@ -70,7 +70,7 @@ services {
                     ipsec-inside-interface ms-5/0/0.23;
                 }
                 then {
-                    remote-gateway 192.168.23.1;
+                    remote-gateway ;
                     dynamic {
                         ike-policy ike-policy-ipsec-23;
                     }
@@ -106,19 +106,19 @@ services {
                 description ipsec-21;
                 mode main;
                 proposals ike-proposal-default;
-                pre-shared-key ascii-text "$9$S6UlvLoaUDHm4az3/9puLx7"; ## SECRET-DATA
+                pre-shared-key ascii-text jnpr123;
             }
             policy ike-policy-ipsec-22 {
                 description ipsec-22;
                 mode main;
                 proposals ike-proposal-default;
-                pre-shared-key ascii-text "$9$S6UlvLoaUDHm4az3/9puLx7"; ## SECRET-DATA
+                pre-shared-key ascii-text jnpr123;
             }
             policy ike-policy-ipsec-23 {
                 description ipsec-23;
                 mode main;
                 proposals ike-proposal-default;
-                pre-shared-key ascii-text "$9$S6UlvLoaUDHm4az3/9puLx7"; ## SECRET-DATA
+                pre-shared-key ascii-text jnpr123;
             }
         }
         establish-tunnels immediately;
