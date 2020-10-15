@@ -55,7 +55,7 @@ services {
                     ipsec-inside-interface ms-5/0/0.22;
                 }
                 then {
-                    remote-gateway ;
+                    remote-gateway 192.168.22.1;
                     dynamic {
                         ike-policy ike-policy-ipsec-22;
                     }
@@ -70,7 +70,7 @@ services {
                     ipsec-inside-interface ms-5/0/0.23;
                 }
                 then {
-                    remote-gateway ;
+                    remote-gateway 192.168.23.1;
                     dynamic {
                         ike-policy ike-policy-ipsec-23;
                     }
