@@ -1,11 +1,20 @@
 ---
 customers:
   - id: 21
-    name: juniper
+    name: customer-21
     gateway: 192.168.147.204
     tunnel_local_add: 3.0.21.1
     tunnel_remote_add: 3.0.21.2
     tunnel_prefix: 30
-    subnets: 
+    remote_subnets: 
       - 3.21.0.0/24
       - 3.21.1.0/24
+  - id: 22
+    name: customer-22
+    gateway: 192.168.147.205
+    tunnel_local_add: 3.0.22.1
+    tunnel_remote_add: 3.0.22.2
+    tunnel_prefix: 30
+    remote_subnets: 
+      - 3.22.0.0/24
+      - 3.22.1.0/24
