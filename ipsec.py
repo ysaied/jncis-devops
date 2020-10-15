@@ -9,4 +9,4 @@ with open("./vars/ipsec.yml") as f:
     data = yaml.load(f, Loader=yaml.FullLoader)
 
 print (data)
-#print (ipsec_jinja2.render(data))
+print (ipsec_jinja2.render(data))
