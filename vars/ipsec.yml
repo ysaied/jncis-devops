@@ -2,7 +2,7 @@
 customers:
   - id: 21
     name: customer-21
-    gateway: 192.168.147.204
+    gateway: 192.168.21.1
     tunnel_local_add: 3.0.21.1
     tunnel_remote_add: 3.0.21.2
     tunnel_prefix: 30
@@ -12,7 +12,7 @@ customers:
     asn: 21  
   - id: 22
     name: customer-22
-    gateway: 192.168.147.205
+    gateway: 192.168.22.1
     tunnel_local_add: 3.0.22.1
     tunnel_remote_add: 3.0.22.2
     tunnel_prefix: 30
@@ -20,3 +20,13 @@ customers:
       - 3.22.0.0/24
       - 3.22.1.0/24
     asn: 22  
+  - id: 23
+    name: customer-23
+    gateway: 192.168.23.1
+    tunnel_local_add: 3.0.23.1
+    tunnel_remote_add: 3.0.23.2
+    tunnel_prefix: 30
+    remote_subnets: 
+      - 3.23.0.0/24
+      - 3.23.1.0/24
+    asn: 23  
