@@ -79,7 +79,9 @@ interfaces {
 }
 routing-options {
     static {
-        route {{ customer.lan_subnet }} next-hop ms-5/0/0.{{ customer.id }};
+        {% for subnet in customer.subnets %}
+        route {{ subnet }} next-hop ms-5/0/0.{{ customer.id }};
+        {% endfor %}
     }                                   
 }
 protocols {
