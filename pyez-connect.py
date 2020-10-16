@@ -1,6 +1,7 @@
 #! /usr/bin/python
 
 from jnpr.junos import Device
+from datetime import datetime
 
 
 out_fname = "pyez_connect-" + datetime.now().strftime("%d%h%Y") + ".txt"
