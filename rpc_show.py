@@ -11,5 +11,5 @@ out_fname = "rpc_show-" + datetime.now().strftime("%d%h%Y") + ".txt"
 with open("./j2-results/" + out_fname, "w") as results:
 # create Device instance to connect and get device info
     with Device(host="192.0.0.41", user="ysaied") as jnpr_node:
-        result = etree.tostring(jnpr_node.rpc.get_system_uptime_information(current-time), encoding='unicode', pretty_print=True)
+        result = etree.tostring(jnpr_node.rpc.get_system_uptime_information(system-uptime-information), encoding='unicode', pretty_print=True)
         print >> results, (result)
