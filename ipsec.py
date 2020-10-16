@@ -13,7 +13,7 @@ with open("./vars/ipsec.yml", "r") as vars_yaml:
     ipsec_vars = yaml.load(vars_yaml, Loader=yaml.FullLoader)
 
 # open file to write Jinja2 render results
-out_fname = "config-" + datetime.now().strftime("%d%h%Y") + ".txt"
+out_fname = "ipsec-" + datetime.now().strftime("%d%h%Y") + ".txt"
 print (out_fname)
-with open("./j2-results/junos.txt", "w") as config:
+with open("./j2-results/" + out_fname, "w") as config:
     print >> config, (ipsec_jinja2.render(ipsec_vars))
