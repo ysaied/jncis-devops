@@ -4,7 +4,7 @@ from jnpr.junos import Device
 from datetime import datetime
 
 # output file name
-out_fname = "pyez_connect-" + datetime.now().strftime("%d%h%Y") + ".txt"
+out_fname = "rpc_show-" + datetime.now().strftime("%d%h%Y") + ".txt"
 
 # open file to write 
 with open("./j2-results/" + out_fname, "w") as results:
