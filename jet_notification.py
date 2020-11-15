@@ -7,6 +7,7 @@ def mqtt_callback(client, user_data, message):
 device = "3.126.37.30"
 topic1 = "/junos/events/kernel/route/add/#"
 topic2 = "/junos/events/kernel/route/delete/#"
+topic3 = "/junos/events/syslog/#"
 
 if __name__ == "__main__":
     print "connecting to MQTT brocker"
@@ -16,6 +17,7 @@ if __name__ == "__main__":
     client.loop_start()
     client.subscribe(topic1)
     client.subscribe(topic2)
+    client.subscribe(topic3)
     raw_input("Press Enter to stop")
     client.loop_stop()
     client.disconnect()
