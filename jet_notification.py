@@ -4,8 +4,8 @@ import paho.mqtt.client
 def mqtt_callback(client, user_data, message):
     print("Message with topic {} received: {}".format(message.topic, str(message.payload.decode("utf-8"))))
 
-device = "3.126.37.30"
-topic1 = "/junos/events/kernel/route/#"
+device = "10.117.97.56"
+topic1 = "/junos/events/#"
 
 if __name__ == "__main__":
     print "connecting to MQTT brocker"
