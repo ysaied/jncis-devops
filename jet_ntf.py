@@ -41,7 +41,7 @@ myLogHandler.addHandler(logChoice)
 
 mqtt_port = 1883            # Default JET notification port
 mqtt_ip = '3.126.37.30'       # Default JET address for MQTT
-event_topic = "/junos/events/#"
+event_topic = "/junos/events/kernel/route/#"
 mqtt_timeout = 60           # Default Notification channel timeout
 
 logger = logging.getLogger(__name__)
@@ -138,7 +138,7 @@ def Main():
         mqtt_subscribe(mqtt_client, event_topic , handleEvents1)
         print "Subscribed to topic", event_topic
 
-        time.sleep(20)
+        time.sleep(40)
 
         # Unsubscribe events
         mqtt_unsubscribe(mqtt_client, event_topic)
