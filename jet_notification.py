@@ -8,7 +8,7 @@ device = "3.126.37.30"
 topic1 = "/junos/events/kernel/route/add/#"
 topic2 = "/junos/events/kernel/route/delete/#"
 
-if if __name__ == "__main__":
+if __name__ == "__main__":
     print "connecting to MQTT brocker"
     client = paho.mqtt.client.Client("client1")
     client.on_message = mqtt_callback
