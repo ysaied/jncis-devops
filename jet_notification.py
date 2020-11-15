@@ -11,13 +11,15 @@ topic3 = "/junos/events/syslog/#"
 
 if __name__ == "__main__":
     print "connecting to MQTT brocker"
-    client = paho.mqtt.client.Client("client1")
-    client.on_message = mqtt_callback
+    client = paho.mqtt.client.Client()
     client.connect(device)
     client.loop_start()
+    client.on_message = mqtt_callback
+    
     client.subscribe(topic1)
     client.subscribe(topic2)
     client.subscribe(topic3)
+
     raw_input("Press Enter to stop")
     client.loop_stop()
     client.disconnect()
