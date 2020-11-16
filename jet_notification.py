@@ -2,7 +2,7 @@
 import paho.mqtt.client
 
 def mqtt_callback(client, user_data, message):
-    print("Message with topic {} received: {}".format(message.topic, str(message.payload.decode("utf-8"))))
+    print("Message with topic {} received: {}".format(message.topic, str(message.decode("utf-8"))))
 
 device = "3.126.37.30"
 topic1 = "/junos/events/kernel/route/#"
