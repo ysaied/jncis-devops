@@ -16,6 +16,6 @@ if __name__ == "__main__":
     
     client.subscribe(topic1)
 
-    raw_input("Press Enter to stop")
+    raw_input("Press Enter to stop \n")
     client.loop_stop()
     client.disconnect()
