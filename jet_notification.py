@@ -1,10 +1,11 @@
 #! /usr/bin/python
 import paho.mqtt.client
+import time
 
 def mqtt_callback(client, user_data, message):
     print("Message with topic {} received: {}".format(message.topic, str(message.payload.decode("utf-8"))))
 
-device = "3.126.37.30"
+device = "127.0.0.1"
 topic1 = "/junos/events/kernel/route/#"
 
 if __name__ == "__main__":
@@ -16,6 +17,8 @@ if __name__ == "__main__":
     
     client.subscribe(topic1)
 
-    raw_input("Press Enter to stop \n\n\n")
+    time.sleep(60)
+
+ #   raw_input("Press Enter to stop \n\n\n")
     client.loop_stop()
     client.disconnect()
