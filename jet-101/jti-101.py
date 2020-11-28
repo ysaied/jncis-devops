@@ -1,7 +1,7 @@
 #! /usr/bin/python
 
-from jnx_authentication_service_pb2_grpc import LoginStub
-from jnx_authentication_service_pb2 import LoginRequest
+from authentication_service_pb2_grpc import LoginStub
+from authentication_service_pb2 import LoginRequest
 from agent_pb2_grpc import OpenConfigTelemetryStub
 from agent_pb2 import Path, SubscriptionRequest
 import grpc
