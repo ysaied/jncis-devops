@@ -2,6 +2,7 @@
 
 from jnx_authentication_service_pb2_grpc import AuthenticationStub
 from jnx_authentication_service_pb2 import LoginRequest
+#from jnx_authentication_service_pb2 import LoginResponse
 from agent_pb2_grpc import OpenConfigTelemetryStub
 from agent_pb2 import Path, SubscriptionRequest
 import grpc
@@ -22,9 +23,9 @@ if __name__ == "__main__":
     auth_stub = AuthenticationStub(channel)
     login_request = LoginRequest(username=app_username, password=app_password, client_id=app_client)
     login_responce = auth_stub.Login(login_request, app_timeout)
-    if login_responce is not True:
-        print ("Error; gRPC server connection failed!!!", login_responce.result)
-        sys.exit(1)
+#    if login_responce is not True:
+#        print ("Error; gRPC server connection failed!!!", login_responce.result)
+#        sys.exit(1)
     telemetry_stub = OpenConfigTelemetryStub(channel)
     path1 = Path(path=app_sensor, sample_frequency=app_freq)
     request = SubscriptionRequest(path_list=[path1])
