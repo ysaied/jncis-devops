@@ -1,6 +1,6 @@
 #! /usr/bin/python
 
-from jnx_authentication_service_pb2_grpc import AuthenticationStub
+from jnx_authentication_service_pb2_grpc import Authentication
 from jnx_authentication_service_pb2 import LoginRequest
 from agent_pb2_grpc import OpenConfigTelemetryStub
 from agent_pb2 import Path, SubscriptionRequest
@@ -19,9 +19,9 @@ app_sensor = "/interface/interface[name='ge-0/0/0']/subinterfaces/subinterface[i
 
 if __name__ == "__main__":
     channel = grpc.insecure_channel(app_device+":"+app_port)
-    auth_stub = AuthenticationStub(channel)
+    auth_stub = Authentication(channel)
     login_request = LoginRequest(username=app_username, password=app_password, client_id=app_client)
-    login_responce = auth_stub.LoginCheck(login_request, app_timeout)
+    login_responce = auth_stub.Login(login_request, app_timeout)
     if login_responce is not True:
         print ("Error; gRPC server connection failed!!!", login_responce.result)
         sys.exit(1)
