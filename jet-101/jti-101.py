@@ -20,7 +20,7 @@ app_sensor = "/interface/interface[name='ge-0/0/0']/subinterfaces/subinterface[i
 if __name__ == "__main__":
     channel = grpc.insecure_channel(app_device+":"+app_port)
     auth_stub = AuthenticationStub(channel)
-    login_request = LoginRequest(user_name=app_username, password=app_password, client_id=app_client)
+    login_request = LoginRequest(username=app_username, password=app_password, client_id=app_client)
     login_responce = auth_stub.LoginCheck(login_request, app_timeout)
     if login_responce is not True:
         print ("Error; gRPC server connection failed!!!", login_responce.result)
