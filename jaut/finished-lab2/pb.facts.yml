@@ -1,0 +1,31 @@
+---
+- name: JAUT facts gathering playbook
+  hosts: routers
+  roles:
+   - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  vars_prompt:
+   - name: USERNAME
+     prompt: User name
+     private: no
+   - name: PASSWORD
+     prompt: Device password
+     private: yes
+
+  tasks:
+   - name: Get Junos device information
+     juniper_junos_facts:
+       user: "{{ USERNAME }}"
+       passwd: "{{ PASSWORD }}"
+     register: junos_facts
+
+   - name: Print Junos facts
+     debug:
+       msg:
+         "Hostname: {{ junos_facts.facts.hostname }},
+         Model: {{ junos_facts.facts.model }},
+         Version: {{ junos_facts.facts.version }},
+         Serial Number: {{ junos_facts.facts.serialnumber }},
+         Up Time: {{ junos_facts.facts.RE0.up_time }}"

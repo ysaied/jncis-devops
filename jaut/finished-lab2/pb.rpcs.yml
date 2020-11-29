@@ -1,0 +1,29 @@
+---
+- name: Issue Junos RPCs
+  hosts: routers
+  roles:
+   - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  vars_prompt:
+   - name: USERNAME
+     prompt: User name
+     private: no
+   - name: PASSWORD
+     prompt: Device password
+     private: yes
+
+  tasks:
+   - name: Issue RPC
+     juniper_junos_rpc:
+       user: "{{ USERNAME }}"
+       passwd: "{{ PASSWORD }}"
+       rpc: get-interface-information
+       kwargs:
+         terse: true
+         interface-name: ge-0/0/0
+       format: text
+     register: intf_info
+
+   - debug: var=intf_info

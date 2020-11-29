@@ -1,0 +1,26 @@
+---
+- name: Ping from a Junos device
+  hosts: routers
+  roles:
+   - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  vars_prompt:
+   - name: USERNAME
+     prompt: User name
+     private: no
+   - name: PASSWORD
+     prompt: Device password
+     private: yes
+
+  tasks:
+   - name: Execute ping peer
+     juniper_junos_ping:
+       user: "{{ USERNAME }}"
+       passwd: "{{ PASSWORD }}"
+       dest_ip: "{{ item }}"
+     loop:
+      - 172.25.11.254
+      - 172.25.11.100
+

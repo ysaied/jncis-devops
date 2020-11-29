@@ -1,0 +1,19 @@
+---
+- name: Rollback config
+  hosts: routers
+  roles:
+   - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+   - name: Perform rollback 1
+     juniper_junos_config:
+       provider: "{{ provider }}"
+       rollback: 1
+       commit: true
+     register: result
+
+   - name: Print diff
+     debug: var=result.diff_lines
+     when: result.diff_lines is defined

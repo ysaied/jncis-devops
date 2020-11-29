@@ -1,0 +1,17 @@
+protocols {
+    ospf {
+        {% for area in areas %}
+        area {{ area.id }} {
+            {% for interface in area.interfaces %}
+                {% if interface.passive is defined %}
+                interface {{ interface.name }} {
+                    passive;
+                }
+                {% else %}
+                interface {{ interface.name }};
+                {% endif %}
+            {% endfor %}
+        }
+        {% endfor %}
+    }
+}

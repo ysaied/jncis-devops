@@ -1,0 +1,8 @@
+hosts:
+  - device: 172.25.11.1
+    username: lab
+    passwd: lab123
+
+tests:
+  - test_interfaces_up.yml
+

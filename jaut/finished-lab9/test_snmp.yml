@@ -1,0 +1,9 @@
+---
+Test SNMP config:
+ - rpc: get-configuration
+ - item:
+     xpath: /configuration/snmp
+     tests:
+       - exists: community[name='juniper']
+         info: SNMP community 'juniper' is configured.
+         err: SNMP community 'juniper' is not configured!

@@ -1,0 +1,22 @@
+
+[edit interfaces]
++   ge-0/0/0 {
++       unit 0 {
++           family inet {
++               address 10.0.0.1/24;
++           }
++       }
++   }
+[edit]
++  routing-options {
++      autonomous-system 65100;
++  }
++  protocols {
++      bgp {
++          group EBGP {
++              type external;
++              peer-as 65200;
++              neighbor 10.0.0.2;
++          }
++      }
++  }

@@ -1,0 +1,10 @@
+interface:
+  name: ge-0/0/0
+  unit: 0
+  addr: 10.0.0.2
+  mask: 24
+
+bgp:
+  my_as: 65200
+  peer_as: 65100
+  peer_ip: 10.0.0.1

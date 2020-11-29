@@ -1,0 +1,12 @@
+ospf-neighbor:
+ - command: show ospf neighbor
+ - iterate:
+     id: interface-name
+     xpath: ospf-neighbor
+     tests:
+      - all-same: ospf-neighbor-state
+        err: 'OSPF neighbor on {{post["interface-name"]}} to
+             {{post["neighbor-address"]}} is not in the same state, 
+             state change from {{pre["ospf-neighbor-state"]}} to
+             {{post["ospf-neighbor-state"]}}'
+        info: 'No state change for OSPF neighbors'

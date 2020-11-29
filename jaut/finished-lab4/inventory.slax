@@ -1,0 +1,20 @@
+version 1.0;
+
+ns junos = "http://xml.juniper.net/junos/*/junos";
+ns xnm = "http://xml.juniper.net/xnm/1.1/xnm";
+ns jcs = "http://xml.juniper.net/junos/commit-scripts/1.0";
+
+import "../import/junos.xsl";
+
+match / {
+    <op-script-results> {
+        var $inv = jcs:invoke("get-chassis-inventory");
+        var $model = $inv/chassis/description;
+        var $sn = $inv/chassis/serial-number;
+        <output> "Model: " _ $model;
+        <output> "Serial Number: " _ $sn;
+        for-each ($inv/chassis/chassis-module/name) {
+            <output> "Chassis module: " _ .;
+        }
+    }
+}

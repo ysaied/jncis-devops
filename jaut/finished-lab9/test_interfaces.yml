@@ -1,0 +1,11 @@
+Test interfaces:
+  - command: show interfaces terse
+  - iterate:
+      xpath: physical-interface
+      id: name
+      tests:
+        - no-diff: oper-status
+          err: "Test Failed: oper-status of {{id_0}} got changed
+               from <{{pre['oper-status']}}> to <{{post['oper-status']}}>"
+          info: "Test Passed: oper-status is the same, before it was
+                <{{pre['oper-status']}}>, now it is <{{post['oper-status']}}>"

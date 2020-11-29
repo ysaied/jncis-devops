@@ -1,0 +1,14 @@
+Ensure no change in interface admin status:
+  - rpc: get-interface-information
+    kwargs:
+      terse: True
+  - iterate:
+      xpath: physical-interface
+      id: name
+      tests:
+        - no-diff: admin-status
+          info: "Test Succeeded - admin-status of {{pre['name']}} is 
+                equal to {{pre['admin-status']}}"
+          err: "Test Failed - admin-status of {{pre['name']}} changed 
+               from {{pre['admin-status']}} to {{post['admin-status']}}"
+

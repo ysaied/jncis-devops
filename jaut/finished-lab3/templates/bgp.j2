@@ -1,0 +1,21 @@
+interfaces {
+    {{ interface.name }} {
+        unit {{ interface.unit }} {
+            family inet {
+                address {{ interface.addr }}/{{ interface.mask }};
+            }
+        }
+    }
+}
+routing-options {
+    autonomous-system {{ bgp.my_as }};
+}
+protocols {
+    bgp {
+        group EBGP {
+            type external;
+            peer-as {{ bgp.peer_as }};
+            neighbor {{ bgp.peer_ip }};
+        }
+    }
+}

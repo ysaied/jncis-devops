@@ -1,0 +1,26 @@
+---
+- name: Example of juniper_junos_jsnapy
+  hosts: vMX-1
+  connection: local
+  gather_facts: no
+  roles:
+    - Juniper.junos
+
+  tasks:
+   - name: Snapcheck interfaces status
+     juniper_junos_jsnapy:
+       action: snapcheck
+       config_file: config_interfaces_up.yml
+       logfile: jsnapy-ansible.log
+       provider: {"user": "lab", "passwd": "lab123"}
+     register: result
+
+#   - name: Print the full test response
+#     debug:
+#       var: result
+
+   - name: Check if all tests passed
+     assert:
+       that:
+        - "result.passPercentage == 100"
+

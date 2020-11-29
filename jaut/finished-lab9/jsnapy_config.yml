@@ -1,0 +1,10 @@
+---
+hosts:
+ - device: 172.25.11.1
+   username: lab
+   passwd: lab123
+
+tests:
+# - test_snmp.yml
+ - test_interfaces.yml
+

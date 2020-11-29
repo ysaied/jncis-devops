@@ -1,0 +1,21 @@
+version 1.0;
+
+ns junos = "http://xml.juniper.net/junos/*/junos";
+ns xnm = "http://xml.juniper.net/xnm/1.1/xnm";
+ns jcs = "http://xml.juniper.net/junos/commit-scripts/1.0";
+
+import "../import/junos.xsl";
+
+match / {
+    <op-script-results> {
+        var $names-str = jcs:get-input("Enter comma-separated list of names: ");
+        var $names-array = jcs:split(", *", $names-str);
+        for-each ($names-array) {
+            call print-name($name=.);
+        }
+    }
+}
+
+template print-name($name) {
+    <output> "Hello, " _ $name _ "!";
+}

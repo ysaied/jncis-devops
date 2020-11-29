@@ -1,0 +1,24 @@
+---
+- name: Hello World!
+  hosts: vMX-1
+  connection: local
+  gather_facts: no
+
+  vars:
+    USERNAME: lab
+    DEVICE_PASSWORD: lab123
+
+  tasks:
+  - name: Get Junos device information
+    junos_facts:
+      provider:
+        host: 172.25.11.1 
+        username: "{{ USERNAME }}"
+        password: "{{ DEVICE_PASSWORD }}"
+        port: 830
+    register: junos_facts
+
+  - name: Print Junos facts
+    debug: 
+      msg: "{{ junos_facts }}"
+
