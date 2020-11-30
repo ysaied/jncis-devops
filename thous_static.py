@@ -5,6 +5,7 @@ b = 0
 
 while a <= 255 :
     while b <= 255 :
-        print (a,b)
+        #print (a,b)
         b += 1
+    print (a,b)
     a += 1
