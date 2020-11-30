@@ -12,7 +12,7 @@ a = 0
 #file_output.close()
 
 file_output = open("/var/tmp/l3vpn", "w")
-while a <= 1000 :
+while a <= 8000 :
     print >> file_output,("set routing-instances l3vpn-{} instance-type vrf".format(a))
     a +=1
 file_output.close()
