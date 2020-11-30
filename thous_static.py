@@ -2,7 +2,7 @@
 
 a = 0
 
-file_output = open(/var/tmp/test, "w")
+file_output = open("/var/tmp/test", "w")
 while a <= 255 :
     b = 0
     while b <= 255 :
