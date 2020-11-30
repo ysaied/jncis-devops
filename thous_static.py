@@ -4,5 +4,7 @@ a = 0
 b = 0
 
 while a <= 255 :
-    print (a)
+    while b <= 255 :
+        print (a,b)
+        b += 1
     a += 1
