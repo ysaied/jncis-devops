@@ -7,6 +7,8 @@ from pprint import pprint
 from datetime import datetime
 import re
 
+today = datetime.now().strftime("%d-%h-%Y")
+
 Leafs = {
   "Leaf1" : "192.0.0.61",
   "Leaf2" : "192.0.0.62",
@@ -34,7 +36,7 @@ for leaf,oob in Leafs.items():
     if re.search('^[axg]e', ifd):
       interface_list.append(ifd)
 
-
+  open_file = open(leaf+"-sp-to-ent-migration"+today+".txt", "w")
   for interface in interface_list:
     ifd = "interfaces/interface[name='"+interface+"']/unit"
     ifd_unit = config.findall(ifd)
@@ -42,8 +44,8 @@ for leaf,oob in Leafs.items():
       if ((unit.find("name").text) != str(0)):
         vid = unit.find("vlan-id").text
         uid = unit.find("name").text
-        print("\n###unit {} with vlan-id {} found on interface {}".format(uid, vid, interface))
-        print("delete interfaces {} unit {}".format(interface,uid))
-        print("set interfaces {}.0 family ethernet-switching vlan members {}".format(interface,vid))
-        print("delete vlans vlan-{} interface {}.{}".format(vid,interface,uid))
-  #print(interface, unit)
+        print >> file_output,("\n###unit {} with vlan-id {} found on interface {}".format(uid, vid, interface))
+        print >> file_output,("delete interfaces {} unit {}".format(interface,uid))
+        print >> file_output,("set interfaces {}.0 family ethernet-switching vlan members {}".format(interface,vid))
+        print >> file_output,("delete vlans vlan-{} interface {}.{}".format(vid,interface,uid))
+
