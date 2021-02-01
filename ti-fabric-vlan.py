@@ -32,7 +32,7 @@ for leaf,oob in Leafs.items():
     vlan_name = vlan.find('name').text
     vlan_list.append(vlan_name)
   vlan_list.sort()
-  
+
   file_name = "/var/tmp/" + leaf + "_sp-to-ent-migration_" + today + ".txt"
   open_file = open(file_name, "w")
 
@@ -41,12 +41,12 @@ for leaf,oob in Leafs.items():
   for vlan in vlan_list:
     ifl_xpath = "vlans/vlan[name='"+vlan+"']/interface"
     ifl_list = config.findall(ifl_xpath)
-    vlan_id = vlan.split("-")[1]
-    vlan_id_set.add(vlan_id)
     for ifl in ifl_list:
       ifl_name = ifl.find("name").text
       ifd_name = ifl_name.split(".")[0]
       ifd_set.add(ifd_name)
+      vlan_id = vlan.split("-")[1]
+      vlan_id_set.add(vlan_id)
       print("delete vlans {} interface {}".format(vlan,ifl_name), file=open_file)
       print("delete interfaces {}".format(ifl_name), file=open_file)
       print("set interfaces {}.0 family ethernet-switching vlan members {}".format(ifd_name,vlan_id), file=open_file)
