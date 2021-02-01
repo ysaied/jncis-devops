@@ -3,11 +3,13 @@
 from jnpr.junos import Device
 from lxml import etree
 from jnpr.junos.utils.config import Config
+from jnpr.junos.utils.scp import SCP
 from pprint import pprint
 from datetime import datetime
 import re
 
 today = datetime.now().strftime("%d-%h-%Y")
+username = "ysaied"
 
 Leafs = {
   "Leaf1" : "192.0.0.61",
@@ -19,16 +21,12 @@ Leafs = {
   }
 
 for leaf,oob in Leafs.items():
-  dev = Device(host=oob, user="ysaied", gather_facts="false")
+  dev = Device(host=oob, user=username, gather_facts="false")
   dev.open()
   config = dev.rpc.get_config()
   dev.close()
-
   #etree.dump(config)
-  #print(etree.tostring(config, encoding='unicode', pretty_print=True))
-
   interfaces = config.findall('interfaces/interface')
-  #print(etree.tostring(interfaces, encoding='unicode', pretty_print=True))
 
   interface_list = list()
   for interface in interfaces:
@@ -37,6 +35,7 @@ for leaf,oob in Leafs.items():
       interface_list.append(ifd)
 
   file_name = "/var/tmp/" + leaf + "_sp-to-ent-migration_" + today + ".txt"
+  #Open local file to load the configuration
   open_file = open(file_name, "w")
 
   uni_ifd=set()
@@ -57,5 +56,10 @@ for leaf,oob in Leafs.items():
   for interface in uni_ifd:
     print("set interfaces {}.0 family ethernet-switching interface-mode trunk".format(interface), file=open_file)
   for vlan in uni_vlan:
-    print("set vlans VLAN-{} vlan-id {}".format(vlan,vlan), file=open_file)  
+    print("set vlans VLAN-{} vlan-id {}".format(vlan,vlan), file=open_file) 
+  
+  #Open local file to load the configuration
   open_file.close()
+  
+  with SCP(dev, progress=True) as scp:
+    scp.put(file_name, remote_path="/var/home/"+username)
