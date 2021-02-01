@@ -34,7 +34,7 @@ for leaf,oob in Leafs.items():
       interface_list.append(ifd)
 
 
-  for interface in ifd_set:
+  for interface in interface_list:
     ifd = "interfaces/interface[name='"+interface+"']/unit"
     ifd_unit = config.findall(ifd)
     for unit in ifd_unit:
