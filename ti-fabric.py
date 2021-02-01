@@ -42,7 +42,7 @@ for leaf,oob in Leafs.items():
   for interface in interface_list:
     ifd = "interfaces/interface[name='"+interface+"']/unit"
     ifd_unit = config.findall(ifd)
-    print("set interfaces {}.0 family ethernet-switching interface-mode trunk".format(interface,uid), file=open_file)
+    print("set interfaces {}.0 family ethernet-switching interface-mode trunk".format(interface), file=open_file)
     for unit in ifd_unit:
       if ((unit.find("name").text) != str(0)):
         vid = unit.find("vlan-id").text
