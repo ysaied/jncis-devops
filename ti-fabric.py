@@ -38,7 +38,7 @@ for leaf,oob in Leafs.items():
   
   leaf = "leaf1"
   file_name = "/var/tmp/" + leaf + "_sp-to-ent-migration_" + today + ".txt"
-  open_file = open(, "w")
+  open_file = open(file_name, "w")
   for interface in interface_list:
     ifd = "interfaces/interface[name='"+interface+"']/unit"
     ifd_unit = config.findall(ifd)
