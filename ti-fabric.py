@@ -44,8 +44,9 @@ for leaf,oob in Leafs.items():
       if ((unit.find("name").text) != str(0)):
         vid = unit.find("vlan-id").text
         uid = unit.find("name").text
-        print >> file_output,("\n###unit {} with vlan-id {} found on interface {}".format(uid, vid, interface))
-        print >> file_output,("delete interfaces {} unit {}".format(interface,uid))
-        print >> file_output,("set interfaces {}.0 family ethernet-switching vlan members {}".format(interface,vid))
-        print >> file_output,("delete vlans vlan-{} interface {}.{}".format(vid,interface,uid))
-
+        print >> open_file,("\n###unit {} with vlan-id {} found on interface {}".format(uid, vid, interface))
+        print >> open_file,("delete interfaces {} unit {}".format(interface,uid))
+        print >> open_file,("set interfaces {}.0 family ethernet-switching vlan members {}".format(interface,vid))
+        print >> open_file,("delete vlans vlan-{} interface {}.{}".format(vid,interface,uid))
+        
+  open_file.close()
