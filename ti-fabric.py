@@ -4,6 +4,7 @@ from jnpr.junos import Device
 from lxml import etree
 from jnpr.junos.utils.config import Config
 from pprint import pprint
+from datetime import datetime
 import re
 
 Leafs = {
@@ -39,8 +40,10 @@ for leaf,oob in Leafs.items():
     ifd_unit = config.findall(ifd)
     for unit in ifd_unit:
       if ((unit.find("name").text) != str(0)):
-        print("\n###unit {} with vlan-id {} found on interface {}".format(unit.find("name").text, unit.find("vlan-id").text, interface))
-        print("delete interfaces {} unit {}".format(interface,unit.find("name").text))
-        print("set interfaces {}.0 family ethernet-switching vlan members {}".format(interface,unit.find("vlan-id").text))
-        print("delete vlans vlan-{} interface {}.{}".format(unit.find("vlan-id").text,interface,unit.find("name").text))
+        vid = unit.find("vlan-id").text
+        uid = unit.find("name").text
+        print("\n###unit {} with vlan-id {} found on interface {}".format(uid, vid, interface))
+        print("delete interfaces {} unit {}".format(interface,uid))
+        print("set interfaces {}.0 family ethernet-switching vlan members {}".format(interface,vid))
+        print("delete vlans vlan-{} interface {}.{}".format(vid,interface,uid))
   #print(interface, unit)
