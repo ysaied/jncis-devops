@@ -55,6 +55,7 @@ for leaf,oob in Leafs.items():
     
   for interface in uni_ifd:
     print("set interfaces {}.0 family ethernet-switching interface-mode trunk".format(interface), file=open_file)
+    print("set interfaces {}.0 family ethernet-switching storm-control storm-control-standard".format(interface), file=open_file)
   for vlan in uni_vlan:
     print("set vlans VLAN-{} vlan-id {}".format(vlan,vlan), file=open_file) 
   
