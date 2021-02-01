@@ -32,7 +32,8 @@ for leaf,oob in Leafs.items():
   for vlan in vlans:
     vlan_name = vlan.find('name').text
     vlan_list.append(vlan_name)
-
+  vlan_list.sort()
+  
   file_name = "/var/tmp/" + leaf + "_sp-to-ent-migration_" + today + ".txt"
   open_file = open(file_name, "w")
 
@@ -51,18 +52,17 @@ for leaf,oob in Leafs.items():
       print("delete interfaces {}".format(ifl_name), file=open_file)
       print("set interfaces {}.0 family ethernet-switching vlan members {}".format(ifd_name,vlan_id), file=open_file)
   
+  vlan_id_list=list(vlan_id_set)
+  vlan_id_list.sort()
+  for vlan_id in vlan_id_list:
+    print("set vlans VLAN-{0} vlan-id {0}".format(vlan_id), file=open_file) 
+
   ifd_list=list(ifd_set)
   ifd_list.sort()  
   for ifd in ifd_list:
     print("set interfaces {}.0 family ethernet-switching interface-mode trunk".format(ifd), file=open_file)
     print("set interfaces {}.0 family ethernet-switching storm-control storm-control-standard".format(ifd), file=open_file)
   
-  vlan_id_list=list(vlan_id_set)
-  vlan_id_list.sort()
-  for vlan_id in vlan_id_list:
-    print("set vlans VLAN-{0} vlan-id {0}".format(vlan_id), file=open_file) 
-  
-  #close local file to load the configuration
   open_file.close()
   
   with SCP(dev, progress=True) as scp:
