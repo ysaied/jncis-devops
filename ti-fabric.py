@@ -33,12 +33,12 @@ for leaf,oob in Leafs.items():
   interface_list = list()
   for interface in interfaces:
     ifd = interface.find('name').text
-    if re.search('^[axg]e', ifd):
+    if re.search('^([xg]e|ae[2-9].*)', ifd):
       interface_list.append(ifd)
-  
-  #leaf = "leaf1"
+
   file_name = "/var/tmp/" + leaf + "_sp-to-ent-migration_" + today + ".txt"
   open_file = open(file_name, "w")
+
   for interface in interface_list:
     ifd = "interfaces/interface[name='"+interface+"']/unit"
     ifd_unit = config.findall(ifd)
@@ -46,9 +46,8 @@ for leaf,oob in Leafs.items():
       if ((unit.find("name").text) != str(0)):
         vid = unit.find("vlan-id").text
         uid = unit.find("name").text
-        print("\n###unit {} with vlan-id {} found on interface {}".format(uid, vid, interface), file=open_file)
         print("delete interfaces {} unit {}".format(interface,uid), file=open_file)
         print("set interfaces {}.0 family ethernet-switching vlan members {}".format(interface,vid), file=open_file)
-        print("delete vlans vlan-{} interface {}.{}".format(vid,interface,uid), file=open_file)
+        print("delete vlans VLAN-{} interface {}.{}".format(vid,interface,uid), file=open_file)
         
   open_file.close()
