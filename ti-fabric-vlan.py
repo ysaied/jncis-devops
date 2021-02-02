@@ -40,7 +40,7 @@ for leaf,oob in Leafs.items():
   vlan_id_set=set()
   for vlan in vlan_list:
     #ifl_xpath = "vlans/vlan[name='"+vlan+"']/interface"
-    ifl_xpath = "vlans/vlan[name={}]/interface".format(vlan)
+    ifl_xpath = "vlans/vlan[name='{}']/interface".format(vlan)
     ifl_list = config.findall(ifl_xpath)
     for ifl in ifl_list:
       ifl_name = ifl.find("name").text
