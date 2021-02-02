@@ -33,7 +33,8 @@ for leaf,oob in Leafs.items():
     vlan_list.append(vlan_name)
   vlan_list.sort()
 
-  file_name = "/var/tmp/" + leaf + "_sp-to-ent-migration_" + today + ".txt"
+  file_name = "/var/tmp/{}_sp-to-ent-migration_{}.txt".format(leaf,today)
+  #"/var/tmp/" + leaf + "_sp-to-ent-migration_" + today + ".txt"
   open_file = open(file_name, "w")
 
   ifd_set=set()
