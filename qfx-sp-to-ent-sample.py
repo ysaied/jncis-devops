@@ -47,14 +47,9 @@ for leaf,oob in Leafs.items():
       ifd_set.add(ifd_name)
       vlan_id = vlan.split("-")[1]
       vlan_id_set.add(vlan_id)
-      print("""
-delete vlans {0} interface {2}
-delete interfaces {2}
-set interfaces {1}.0 family ethernet-switching vlan members {3}
-      """.format(vlan,ifd_name,ifl_name,vlan_id),file=open_file)
-      #print("delete vlans {} interface {}".format(vlan,ifl_name), file=open_file)
-      #print("delete interfaces {}".format(ifl_name), file=open_file)
-      #print("set interfaces {}.0 family ethernet-switching vlan members {}".format(ifd_name,vlan_id), file=open_file)
+      print("delete vlans {} interface {}".format(vlan,ifl_name), file=open_file)
+      print("delete interfaces {}".format(ifl_name), file=open_file)
+      print("set interfaces {}.0 family ethernet-switching vlan members {}".format(ifd_name,vlan_id), file=open_file)
   
   vlan_id_list=list(vlan_id_set)
   vlan_id_list.sort()
