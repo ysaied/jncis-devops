@@ -34,13 +34,13 @@ for leaf,oob in Leafs.items():
   vlan_list.sort()
 
   file_name = "/var/tmp/{}_sp-to-ent-migration_{}.txt".format(leaf,today)
-  #"/var/tmp/" + leaf + "_sp-to-ent-migration_" + today + ".txt"
   open_file = open(file_name, "w")
 
   ifd_set=set()
   vlan_id_set=set()
   for vlan in vlan_list:
-    ifl_xpath = "vlans/vlan[name='"+vlan+"']/interface"
+    #ifl_xpath = "vlans/vlan[name='"+vlan+"']/interface"
+    ifl_xpath = "vlans/vlan[name={}]/interface".format(vlan)
     ifl_list = config.findall(ifl_xpath)
     for ifl in ifl_list:
       ifl_name = ifl.find("name").text
