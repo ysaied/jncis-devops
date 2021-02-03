@@ -2,7 +2,7 @@
 import pandas as pd # Importing the libraries
 import numpy as np
 import os
-#import nltk
+import nltk
 #import heapq 
 from nltk.tokenize import sent_tokenize, word_tokenize
 #from nltk.tokenize import word_tokenize
@@ -24,7 +24,7 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize import RegexpTokenizer 
 from nltk.corpus import stopwords
 
-#nltk.download('stopwords')
+nltk.download('stopwords')
 corpus = []
 stopwords = nltk.corpus.stopwords.words('english')
 
