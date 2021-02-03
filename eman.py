@@ -3,18 +3,20 @@ import pandas as pd # Importing the libraries
 import numpy as np
 import os
 #import nltk
-import heapq 
-from nltk.tokenize import sent_tokenize
+#import heapq 
+from nltk.tokenize import sent_tokenize, word_tokenize
+#from nltk.tokenize import word_tokenize
 import re
 import csv
-from PIL import Image
+#not found
+#from PIL import Image
 from os import path
-from PIL import Image
+#from PIL import Image
 from scipy.sparse import coo_matrix
 from sklearn.feature_extraction.text import TfidfTransformer
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import matplotlib.pyplot as plt
-from nltk.tokenize import word_tokenize
+
 from sklearn.feature_extraction.text import CountVectorizer
 #CountVectorizer(dtype=int32)
 from nltk.stem.porter import PorterStemmer
@@ -24,11 +26,15 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 corpus = []
 stopwords = nltk.corpus.stopwords.words('english')
-dataset = pd.read_csv('c:/Users/Eman Nabil/Desktop/BoneDiagno1.csv',delimiter="\t",encoding='UTF-8')# Importing the dataset
+
+
+dataset = pd.read_csv('/var/tmp/eman.csv',delimiter="\t",encoding='UTF-8')# Importing the dataset
 dataset.head()
 
 num_words = 0
-with open('c:/Users/Eman Nabil/Desktop/BoneDiagno1.csv',encoding='UTF-8',errors='ignore') as f:
+
+
+with open('/var/tmp/eman.csv',encoding='UTF-8',errors='ignore') as f:
    for text in f:
         #print(f.read())
         words = text.split()
@@ -49,7 +55,9 @@ sentence_scores = {}
 stopwords = nltk.corpus.stopwords.words('english')
 print('word_frequencies')
 word_frequencies = {} 
-with open('c:/Users/Eman Nabil/Desktop/BoneDiagno1.csv',encoding='utf-8',errors='ignore') as f:
+
+
+with open('/var/tmp/eman.csv',encoding='utf-8',errors='ignore') as f:
     for text in f:
         for word in nltk.word_tokenize(text):  
             if word not in stopwords:
@@ -57,6 +65,8 @@ with open('c:/Users/Eman Nabil/Desktop/BoneDiagno1.csv',encoding='utf-8',errors=
                     word_frequencies[word] = 1
                 else:
                     word_frequencies[word] += 1
+
+
 for sent in sentence_list:  
     for word in nltk.word_tokenize(sent.lower()):
         if word in word_frequencies.keys():
@@ -78,7 +88,7 @@ def remove_non_ascii_1(dataset):
 #print(dataset)
 corpus = []
 stopwords = nltk.corpus.stopwords.words('english')
-with open('c:/Users/Eman Nabil/Desktop/BoneDiagno1.csv',encoding='utf-8',errors='ignore') as f:
+with open('/var/tmp/eman.csv',encoding='utf-8',errors='ignore') as f:
     for text in f:
        # normalize certain words
         text = re.sub("\\s+[a-zA-Z0-9]\\s+"," _connector_ ",text)
