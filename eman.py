@@ -26,6 +26,7 @@ from nltk.corpus import stopwords
 
 nltk.download('stopwords')
 nltk.download('punkt')
+nltk.download('wordnet')
 
 corpus = []
 stopwords = nltk.corpus.stopwords.words('english')
