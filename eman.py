@@ -25,6 +25,8 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 
 nltk.download('stopwords')
+nltk.download('punkt')
+
 corpus = []
 stopwords = nltk.corpus.stopwords.words('english')
 
