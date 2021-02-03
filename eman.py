@@ -23,7 +23,8 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize import RegexpTokenizer 
 from nltk.corpus import stopwords
-nltk.download('stopwords')
+
+#nltk.download('stopwords')
 corpus = []
 stopwords = nltk.corpus.stopwords.words('english')
 
